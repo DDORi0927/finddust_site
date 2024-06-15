@@ -20,7 +20,6 @@
         urlSuffix = '.json',
         regionGeoJson = [],
         loadCount = 0;
-    console.log('urlPrefix : ',urlPrefix);
 
     var map = new naver.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -35,6 +34,7 @@
             if (keyword.length === 1) {
                 keyword = '0'+ keyword;
             }
+            console.log("keyword : ", keyword);
 
             $.ajax({
                 url: urlPrefix + keyword + urlSuffix,
