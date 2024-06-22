@@ -55,14 +55,15 @@
     tooltip.appendTo(map.getPanes().floatPane);
 
     function startDataLayer() {
-        var styleOptions = {
-        fillColor: '#FFA8DF',
-        fillOpacity: 0.0001,
-        strokeColor: '#ff0000',
-        strokeWeight: 1,
-        strokeOpacity: 0.4
-        };
         map.data.setStyle(function(feature) {
+            var styleOptions = {
+                fillColor: '#FFA8DF',
+                fillOpacity: 0.4,
+                strokeColor: '#ff0000',
+                strokeWeight: 1,
+                strokeOpacity: 0.4
+            };
+
             if (feature.getProperty('focus')) {
                 styleOptions.fillOpacity = 0.6;
                 styleOptions.fillColor = '#0f0';
