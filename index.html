@@ -55,6 +55,8 @@
     tooltip.appendTo(map.getPanes().floatPane);
 
     function startDataLayer() {
+
+        fillColor: '#ff00ff';
         map.data.setStyle(function(feature) {
             var styleOptions = {
                 fillColor: '#FFA8DF',
@@ -68,7 +70,7 @@
                 styleOptions.fillOpacity = 0.6;
                 styleOptions.fillColor = '#0f0';
                 styleOptions.strokeColor = '#0f0';
-                styleOptions.strokeWeight = 4;
+                styleOptions.strokeWeight = 1.5;
                 styleOptions.strokeOpacity = 1;
             }
 
