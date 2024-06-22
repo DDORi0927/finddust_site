@@ -16,14 +16,13 @@
 <script>
     var xhr = new XMLHttpRequest();
     var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'7WRffJVQJp4gshGJytNIRh6ib5MKYTeHSIm0a9QeZ84Yw5zNbga/xgzL4TANvBxU6xsU6tesK5JwkvRvB0Ke/A=='; /*Service Key*/
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/
     queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
     queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
     queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent('2023-11-14'); /**/
     queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
     xhr.open('GET', url + queryParams);
-    console.log(queryParams);
     xhr.onreadystatechange = function () {
         if (this.readyState == 4) {
             alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
