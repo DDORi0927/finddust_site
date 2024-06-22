@@ -17,10 +17,10 @@
     var xhr = new XMLHttpRequest();
     var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
     var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'서비스키'; /*Service Key*/
-    queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('xml'); /**/
+    queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
     queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent('2020-11-14'); /**/
+    queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent('2023-11-14'); /**/
     queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
     xhr.open('GET', url + queryParams);
     xhr.onreadystatechange = function () {
