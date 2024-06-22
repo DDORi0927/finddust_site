@@ -23,6 +23,7 @@
     queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent('2023-11-14'); /**/
     queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
     xhr.open('GET', url + queryParams);
+    console.log(queryParams);
     xhr.onreadystatechange = function () {
         if (this.readyState == 4) {
             alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
