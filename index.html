@@ -16,7 +16,7 @@
 <script>
     var xhr = new XMLHttpRequest();
     var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'7WRffJVQJp4gshGJytNIRh6ib5MKYTeHSIm0a9QeZ84Yw5zNbga%2FxgzL4TANvBxU6xsU6tesK5JwkvRvB0Ke%2FA%3D%3D'; /*Service Key*/
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'서비스키'; /*Service Key*/
     queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('xml'); /**/
     queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
     queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
@@ -30,9 +30,6 @@
     };
 
     xhr.send('');
-
-
-
 
     var HOME_PATH = window.HOME_PATH || '.',
         urlPrefix = HOME_PATH +'/data/region',
