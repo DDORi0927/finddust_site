@@ -14,25 +14,60 @@
 <div id="map" style="width:100%;height:900px;"></div>
 
 <script>
-    var xhr = new XMLHttpRequest();
-    var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
-    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/
-    queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
-    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/
-    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-    queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent('2023-11-14'); /**/
-    queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
-    xhr.open('GET', url + queryParams);
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-        }
-        console.log(this.responseText);
-    };
+    let today = new Date();
 
+    let year = today.getFullYear();
+    let month = today.getMonth() +1;
+    let date = today.getDate();
 
+    var now = "";
+    if (month > 9){
+        now = year + "-" + month + "-" +date;}
+    else {
+        now = year + "-0"  + month + "-" +date;}
+    console.log('now : ' + now);
 
-    xhr.send('');
+var xhr = new XMLHttpRequest();
+var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/
+queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
+queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent(now); /**/
+queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
+queryParams += '&' + encodeURIComponent('ver') + '=' + encodeURIComponent('1.0'); /**/
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+    }
+};
+
+xhr.send('');
+
+<!--    var xhr = new XMLHttpRequest();-->
+<!--    var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/-->
+<!--    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/-->
+<!--    queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/-->
+<!--    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/-->
+<!--    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/-->
+<!--    queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent(now); /**/-->
+<!--    queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/-->
+<!--    xhr.open('GET', url + queryParams);-->
+
+<!--    xhr.onreadystatechange = function () {-->
+<!--        if (this.readyState == 4) {-->
+<!--            alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);-->
+<!--            var response = JSON.parse(this.responseText);-->
+<!--            var items = response.response.body.items;-->
+
+<!--            var informGrades = items.map(function(item) {-->
+<!--                return item.informGrade;});-->
+
+<!--            var uniqueInformGrades = [...new Set(informGrades)];-->
+
+<!--            console.log(uniqueInformGrades);-->
+<!--        }-->
+<!--    };-->
+<!--    xhr.send('');-->
 
     var HOME_PATH = window.HOME_PATH || '.',
         urlPrefix = HOME_PATH +'/data/region',
@@ -78,6 +113,7 @@
     function startDataLayer() {
         map.data.setStyle(function(feature) {
             var styleOptions = {
+                console.log("regionName : "+regionName);
                 fillColor: '#FFA8DF',
                 fillOpacity: 0.4,
                 strokeColor: '#ff0000',
