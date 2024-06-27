@@ -113,22 +113,16 @@ xhr.send('');
     function startDataLayer() {
         map.data.setStyle(function(feature) {
             console.log("regionName : "+feature.getProperty('area1'));
-                var styleOptions = {
+            if (feature.getProperty('area1') === "서울"){
+                console.log("ㅇㅇ");
+            }
+            var styleOptions = {
                 fillColor: '#FFA8DF',
                 fillOpacity: 0.4,
                 strokeColor: '#ff0000',
                 strokeWeight: 1,
                 strokeOpacity: 0.4
             };
-            if (feature.getProperty('area1') === "서울"){
-                var styleOptions = {
-                fillColor: '#FFA1DF',
-                fillOpacity: 0.4,
-                strokeColor: '#ff0000',
-                strokeWeight: 1,
-                strokeOpacity: 0.4};
-            }
-
 
             if (feature.getProperty('focus')) {
                 styleOptions.fillOpacity = 0.6;
