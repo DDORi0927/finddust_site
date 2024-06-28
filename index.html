@@ -27,47 +27,45 @@
         now = year + "-0"  + month + "-" +date;}
     console.log('now : ' + now);
 
-var xhr = new XMLHttpRequest();
-var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/
-queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
-queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent(now); /**/
-queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
-queryParams += '&' + encodeURIComponent('ver') + '=' + encodeURIComponent('1.0'); /**/
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-};
 
-xhr.send('');
+    var xhr = new XMLHttpRequest();
+    var province = [['서울','서울특별시', '좋음'],['제주','제주특별자치도', '좋음'],['전남','전라남도', '좋음'],['전북','전라북도', '좋음'],['광주','광주광역시', '좋음'],['경남','경상남도', '좋음'],['경북','경상북도', '좋음'],['울산','울산광역시', '좋음'],['대구','대구광역시', '좋음'],['부산','부산광역시', '좋음'],['충남','충청남도', '좋음'],['충북','충청북도', '좋음'],['세종','세종특별자치시', '좋음'],['대전','대전광역시','좋음'],['영동','강원도', '좋음'],['영서','강원도', '좋음'],['경기남부','경기도', '좋음'],['경기북부','경기도', '좋음'], ['인천','인천광역시', '좋음']];
+    console.log("province : ", province[0][1]);
+    var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/
+    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/
+    queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/
+    queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent(now); /**/
+    queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/
+    xhr.open('GET', url + queryParams);
 
-<!--    var xhr = new XMLHttpRequest();-->
-<!--    var url = 'http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth'; /*URL*/-->
-<!--    var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'UAKdy4%2BpAK1xB0TdirAji5Sxlpw4hfM8XhWVT%2Fr0S3HeBk566VES7dfO%2BQJdmoWtGHiLjWJhNaeuSGVkhOKDnw%3D%3D'; /*Service Key*/-->
-<!--    queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /**/-->
-<!--    queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /**/-->
-<!--    queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/-->
-<!--    queryParams += '&' + encodeURIComponent('searchDate') + '=' + encodeURIComponent(now); /**/-->
-<!--    queryParams += '&' + encodeURIComponent('InformCode') + '=' + encodeURIComponent('PM10'); /**/-->
-<!--    xhr.open('GET', url + queryParams);-->
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+            var response = JSON.parse(this.responseText);
+            var items = response.response.body.items;
 
-<!--    xhr.onreadystatechange = function () {-->
-<!--        if (this.readyState == 4) {-->
-<!--            alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);-->
-<!--            var response = JSON.parse(this.responseText);-->
-<!--            var items = response.response.body.items;-->
+            var informGrades = items.map(function(item) {
+                return item.informGrade;});
 
-<!--            var informGrades = items.map(function(item) {-->
-<!--                return item.informGrade;});-->
+            var uniqueInformGrades = [...new Set(informGrades)];
+            var InformGradesArray = uniqueInformGrades[0].split(",");
+            Array = [];
+            var i;
+            for (i=0; i<=18; i++){
+                Array[i] = InformGradesArray[i].split(" : ");
+                console.log(i +":"+ Array[i]);
+                province[i][2] = Array[i][1];
+                console.log('province_update : '+province[i][2]);}
 
-<!--            var uniqueInformGrades = [...new Set(informGrades)];-->
 
-<!--            console.log(uniqueInformGrades);-->
+            console.log("ARRAY : " +Array);
+        }
+    };
+    xhr.send('');
+
+<!--    function changing_data(province_array){-->
+<!--        console.log("province data in func : " + province_array);-->
 <!--        }-->
-<!--    };-->
-<!--    xhr.send('');-->
 
     var HOME_PATH = window.HOME_PATH || '.',
         urlPrefix = HOME_PATH +'/data/region',
@@ -112,10 +110,8 @@ xhr.send('');
 
     function startDataLayer() {
         map.data.setStyle(function(feature) {
+            console.log("Array in setStyle : "+Array);
             console.log("regionName : "+feature.getProperty('area1'));
-            if (feature.getProperty('area1') === "서울특별시"){
-                console.log("ㅇㅇ");
-            }
             var styleOptions = {
                 fillColor: '#FFA8DF',
                 fillOpacity: 0.4,
