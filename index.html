@@ -109,13 +109,6 @@
 
     function startDataLayer(province) {
         map.data.setStyle(function(feature) {
-            console.log("array in setStyle : "+province);
-            var i;
-            for (i=0; i<=18; i++){
-                if (feature.getProperty('area1') === province[i][0]){
-                    console.log('YES!');}
-                }
-            console.log("regionName : "+feature.getProperty('area1'));
             var styleOptions = {
                 fillColor: '#FFA8DF',
                 fillOpacity: 0.4,
@@ -123,14 +116,28 @@
                 strokeWeight: 1,
                 strokeOpacity: 0.4
             };
+            console.log("array in setStyle : "+province);
+            var i;
+            for (i=0; i<=18; i++){
+                if (feature.getProperty('area1') === province[i][0]){
+                    if (province[i][0] === "좋음"){
+                        styleOptions.fillcolor = #0040FF;
+                    else if (province[i][0] === "보통"){
+                        styleOptions.fillcolor = #01DF01;}
+                    else if (province[i][0] === "나쁨"){
+                        styleOptions.fillcolor = #FFFF00;}
+                    else{
+                        styleOptions.fillcolor = #FF0000;
+                        }
+                    }
 
-            if (feature.getProperty('focus')) {
-                styleOptions.fillOpacity = 0.6;
-                styleOptions.fillColor = '#0f0';
-                styleOptions.strokeColor = '#0f0';
-                styleOptions.strokeWeight = 1;
-                styleOptions.strokeOpacity = 1;
-            }
+
+                    }
+                }
+
+            console.log("regionName : "+feature.getProperty('area1'));
+
+
             return styleOptions;
         });
 
