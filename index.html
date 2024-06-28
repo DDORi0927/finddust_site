@@ -55,17 +55,14 @@
                 Array[i] = InformGradesArray[i].split(" : ");
                 console.log(i +":"+ Array[i]);
                 province[i][2] = Array[i][1];
-                console.log('province_update : '+province[i][2]);}
+<!--                console.log('province_update : '+province[i][3]);-->
+                }
 
 
             console.log("ARRAY : " +Array);
         }
     };
     xhr.send('');
-
-<!--    function changing_data(province_array){-->
-<!--        console.log("province data in func : " + province_array);-->
-<!--        }-->
 
     var HOME_PATH = window.HOME_PATH || '.',
         urlPrefix = HOME_PATH +'/data/region',
@@ -110,8 +107,7 @@
 
     function startDataLayer() {
         map.data.setStyle(function(feature) {
-<!--            console.log("Array in setStyle : "+Array);-->
-<!--            console.log("regionName : "+feature.getProperty('area1'));-->
+            console.log("regionName : "+feature.getProperty('area1'));
             var styleOptions = {
                 fillColor: '#FFA8DF',
                 fillOpacity: 0.4,
