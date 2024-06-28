@@ -13,7 +13,7 @@
 <body>
 <div id="map" style="width:100%;height:600px;">
 </div>
-<h1>🔵 : 좋음 / 🟢 : 보통 / 🟡 : 나쁨 / 🔴 : 매우 나쁨</h1>
+<h1>미세먼지 알리미            🔵 : 좋음 / 🟢 : 보통 / 🟡 : 나쁨 / 🔴 : 매우 나쁨</h1>
 <script>
     let today = new Date();
 
@@ -41,7 +41,6 @@
 
         xhr.onreadystatechange = function () {
             if (this.readyState == 4) {
-                alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
                 var response = JSON.parse(this.responseText);
                 var items = response.response.body.items;
 
