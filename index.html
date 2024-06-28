@@ -11,8 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-<div id="map" style="width:100%;height:900px;"></div>
-
+<div id="map" style="width:100%;height:900px;">
+    <h1>hello world!</h1>
+</div>
 <script>
     let today = new Date();
 
@@ -168,7 +169,7 @@
                 display: '',
                 left: e.offset.x,
                 top: e.offset.y
-            }).text(regionName + ' 미세먼지 : ');
+            }).text(regionName);
 
             map.data.overrideStyle(feature, {
                 fillOpacity: 0.6,
