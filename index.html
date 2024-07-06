@@ -23,7 +23,8 @@
 
     var now = year + ((month > 9) ? "-" : "-0") +month + ((date > 9) ? "-" : "-0") +date;
 
-    condition = {"좋음" : "#0040FF", "보통" : "01DF01", "나쁨" : "FFFF00", "매우나쁨" : "FF0000"};
+    var condition = {"좋음" : "#0040FF", "보통" : "01DF01", "나쁨" : "FFFF00", "매우나쁨" : "FF0000"};
+    console.log(condition["좋음"]);
 
 <!--    var now = "";-->
 <!--    if (month > 9){-->
@@ -122,6 +123,7 @@
                 strokeWeight: 1,
                 strokeOpacity: 0.4
             };
+
             var i;
             for (i=0; i<= 18; i++){
                 if (feature.getProperty('area') === province[i][0]){
@@ -130,10 +132,28 @@
                     styleOptions.strokeColor = condition[province[i][1]];
                 }
                 }
-
-
-
-
+<!--            var i;-->
+<!--            for (i=0; i<=18; i++){-->
+<!--                if (feature.getProperty('area1') === province[i][0]){-->
+<!--                    console.log("이름 : "+ province[i][0] + "농도 : "+province[i][1]);-->
+<!--                    if (province[i][1] === "좋음"){-->
+<!--                        console.log("좋아요");-->
+<!--                        styleOptions.fillColor = '#0040FF';-->
+<!--                        styleOptions.strokeColor = '#0040FF';}-->
+<!--                    else if (province[i][1] === "보통"){-->
+<!--                        console.log("보통");-->
+<!--                        styleOptions.fillColor = '#01DF01';-->
+<!--                        styleOptions.strokeColor = '#01DF01';}-->
+<!--                    else if (province[i][1] === "나쁨"){-->
+<!--                        console.log("나빠요");-->
+<!--                        styleOptions.fillColor = '#FFFF00';-->
+<!--                        styleOptions.strokeColor = '#FFFF00';}-->
+<!--                    else{-->
+<!--                        console.log("많이 나빠요");-->
+<!--                        styleOptions.fillColor = '#FF0000';-->
+<!--                        styleOptions.strokeColor = '#FF0000';-->
+<!--                        }-->
+<!--                    }-->
 
             console.log("regionName : "+feature.getProperty('area1'));
 
