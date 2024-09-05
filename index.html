@@ -15,24 +15,28 @@
 </div>
 <h1>미세먼지 알리미            🔵 : 좋음 / 🟢 : 보통 / 🟡 : 나쁨 / 🔴 : 매우 나쁨</h1>
 <script>
+<!--날짜 관련 코드-->
     let today = new Date();
 
     let year = today.getFullYear();
     let month = today.getMonth() +1;
     let date = today.getDate();
 
-    var now = year + ((month > 9) ? "-" : "-0") +month + ((date > 9) ? "-" : "-0") +date;
-
-    var condition = {"좋음" : "#0040FF", "보통" : "01DF01", "나쁨" : "FFFF00", "매우나쁨" : "FF0000"};
-    console.log(condition["좋음"]);
-
 <!--    var now = "";-->
 <!--    if (month > 9){-->
 <!--        now = year + "-" + month + "-" +date;}-->
 <!--    else {-->
 <!--        now = year + "-0"  + month + "-" +date;}-->
+
+    var now = year + ((month > 9) ? "-" : "-0") +month + ((date > 9) ? "-" : "-0") +date;
+
     console.log('now : ' + now);
 
+<!--미세먼지 농도에 대한 색상 코드-->
+    var condition = {"좋음" : "#0040FF", "보통" : "#01DF01", "나쁨" : "#FFFF00", "매우나쁨" : "#FF0000"};
+    console.log(condition["좋음"]);
+
+<!--에어코리아에서 가져온 API 함수-->
     function airkorea(){
         var xhr = new XMLHttpRequest();
         var province = [['서울특별시', '좋음'],['제주특별자치도', '좋음'],['전라남도', '좋음'],['전라북도', '좋음'],['광주광역시', '좋음'],['경상남도', '좋음'],['경상북도', '좋음'],
@@ -73,6 +77,7 @@
         xhr.send('');
     }
 
+<!--네이버 지도 API-->
     var HOME_PATH = window.HOME_PATH || '.',
         urlPrefix = HOME_PATH +'/data/region',
         urlSuffix = '.json',
@@ -114,6 +119,7 @@
 
     tooltip.appendTo(map.getPanes().floatPane);
 
+<!--미세먼지 농도에 따른 지도에 색깔 칠하는 함수-->
     function startDataLayer(province) {
         map.data.setStyle(function(feature) {
             var styleOptions = {
@@ -124,6 +130,7 @@
                 strokeOpacity: 0.4
             };
 
+<!--각 도마다 색깔을 다르게 지정하는 반복문-->
             var i;
             for (i=0; i<= 18; i++){
                 if (feature.getProperty('area1') === province[i][0]){
